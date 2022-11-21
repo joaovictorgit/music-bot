@@ -43,7 +43,7 @@ client.on("message", async (message) => {
 
   if (message.content === prefix + "join") {
     try {
-      servers.server.connection = await message.member?.voice.channel.join();
+      servers.server.connection = await message.member.voice.channel.join();
     } catch (error) {
       console.log('Error when joining a voice channel!');
       console.log(error);
@@ -66,7 +66,7 @@ client.on("message", async (message) => {
 
     if (servers.server.connection === null) {
       try {
-        servers.server.connection = await message.member?.voice.channel.join();
+        servers.server.connection = await message.member.voice.channel.join();
       } catch (error) {
         console.log('Error when joining a voice channel!');
         console.log(error);
@@ -116,7 +116,7 @@ const plaYMusic = () => {
     servers.server.dispatcher = servers.server.connection.play(
       ytdl(
         playing,
-        { filter: "audioonly" }
+        { filter: "audioonly", highWaterMark: 1 << 25 }
       )
     );
     servers.server.dispatcher.on('finish', () => {
