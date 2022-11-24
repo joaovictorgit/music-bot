@@ -41,6 +41,24 @@ client.on("message", async (message) => {
     return;
   }
 
+  if (message.content === prefix + "Hi") {
+    const embed = new MessageEmbed()
+      .setColor([216, 46, 46])
+      .setThumbnail('https://i.pinimg.com/736x/93/6b/1b/936b1bfb19852fe431aeaf7da6e7917d.jpg')
+      .setAuthor('Music Bot', 'https://i.pinimg.com/736x/13/8d/52/138d52a8f429510e2c16bd67990dae3c.jpg', 'https://discord.js.org')
+      .setTitle('Instructions on how to use the bot')
+      .addFields(
+        {name: 'Join the voice channel', value: 'OBS:You need to join the voice channel so the bot can join \n !join' },
+        { name: 'Play music', value: '!play <url> or play <artist>'},
+        { name: 'Pause music', value: '!pause'},
+        { name: 'Resume music', value: '!resume'},
+        { name: 'Leave the voice channel', value: '!leave'},
+      )
+      .setTimestamp();
+
+    message.channel.send(embed);
+  }
+
   if (message.content === prefix + "join") {
     try {
       servers.server.connection = await message.member.voice.channel.join();
@@ -95,7 +113,9 @@ client.on("message", async (message) => {
             const listResults = [];
             for (let i in result.data.items) {
               const itemMount = {
-                id: 'https://www.youtube.com/watch?v=' + result.data.items[i].id.videoId,
+                id:
+                  "https://www.youtube.com/watch?v=" +
+                  result.data.items[i].id.videoId,
                 titleVideo: result.data.items[i].snippet.title,
                 nameChannel: result.data.items[i].snippet.channelTitle,
               };
@@ -104,8 +124,13 @@ client.on("message", async (message) => {
 
             const embed = new MessageEmbed()
               .setColor([216, 46, 46])
-              .setAuthor("Music Bot")
-              .setDescription("Choose your song 1-5:");
+              .setAuthor('Music Bot', 'https://i.pinimg.com/736x/13/8d/52/138d52a8f429510e2c16bd67990dae3c.jpg', 'https://discord.js.org')
+              .setDescription("Choose your song 1-5:")
+              .setTimestamp()
+              .setThumbnail(
+                "https://i.pinimg.com/originals/39/e4/4f/39e44f1e597af59afd6cc3aeddb3737c.jpg"
+              )
+              .setFooter("Enjoy the music", 'https://i.pinimg.com/736x/13/8d/52/138d52a8f429510e2c16bd67990dae3c.jpg');
             for (let i in listResults) {
               embed.addField(
                 `${parseInt(i) + 1}º - ${listResults[i].titleVideo}`,
@@ -135,16 +160,15 @@ client.on("message", async (message) => {
                 .then((collected) => {
                   const reaction = collected.first();
                   const idSelect = reactions.indexOf(reaction.emoji.name);
-                  console.log(idSelect);
                   message.channel.send(
                     `You chose ${listResults[idSelect].titleVideo} of ${listResults[idSelect].nameChannel}`
                   );
                   servers.server.queue.push(listResults[idSelect].id);
-                  console.log(servers.server.queue);
+                  //console.log(servers.server.queue);
                   plaYMusic();
                 })
                 .catch((error) => {
-                  message.reply('You have not chosen a valid option!');
+                  message.reply("You have not chosen a valid option!");
                   console.log(error);
                 });
             });

@@ -21,3 +21,6 @@ Aplicação, desenvolvida usando node.js, que cria um bot no discord que toca m�
  - Retorna a tocar a música.
     
         !resume
+
+## Exemplo de aplicação
+![conversation-gif](./images/disc.gif)
