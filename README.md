@@ -1,7 +1,7 @@
 # Music Bot
 
 ## Sobre
-Aplicação, desenvolvida usando node.js, que cria um bot no discord que toca música. O bot pode tocar uma música caso o usuário digite apenas o link ou uma lista de músicas caso digite o nome do artista. Caso ele digite o nome do artista é exibido uma lista de músicas que o usários pode escolher qual deseja que toque.
+Aplicação, desenvolvida usando node.js, que cria um bot no discord que toca música. O bot pode tocar uma música caso o usuário digite apenas o link ou uma lista de músicas caso digite o nome do artista. Caso ele digite o nome do artista é exibido uma lista de músicas que o usuários pode escolher qual deseja que toque.
 
 ## Tecnologias
  - discord.js
